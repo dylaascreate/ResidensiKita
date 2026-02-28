@@ -1,7 +1,5 @@
 
-  # Micro-Gig Economy Platform
-
-  This is a code bundle for Micro-Gig Economy Platform. The original project is available at https://www.figma.com/design/3CWDfGjDhqFjjkXjmn2P6l/Micro-Gig-Economy-Platform.
+  # ResidensiKita
 
   ## Running the code
 
