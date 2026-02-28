@@ -15,6 +15,17 @@ import {
   Clock,
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+} from "../components/ui/dialog"; //
+import { Button } from "../components/ui/button"; //
+import { Input } from "../components/ui/input"; //
+import { Textarea } from "../components/ui/textarea"; //
 
 const electricianImg = "https://images.unsplash.com/photo-1751486289947-4f5f5961b3aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpY2lhbiUyMHJlcGFpciUyMGhvbWUlMjB3b3JrfGVufDF8fHx8MTc3MjIwNzQwMnww&ixlib=rb-4.1.0&q=80&w=1080";
 const communityImg = "https://images.unsplash.com/photo-1660044049301-7e98a91cf27c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjByZXNpZGVudHMlMjBuZWlnaGJvcmhvb2QlMjBNYWxheXNpYXxlbnwxfHx8fDE3NzIyMDczOTl8MA&ixlib=rb-4.1.0&q=80&w=1080";
@@ -349,9 +360,35 @@ export function Community() {
         <div className="px-4 lg:px-6 py-4 space-y-3">
           <div className="flex items-center justify-between mb-1">
             <p className="text-sm text-slate-500">{skillRequests.length} permintaan aktif</p>
-            <button className="flex items-center gap-1.5 bg-emerald-600 text-white text-xs px-3 py-2 rounded-xl font-semibold">
-              <Plus className="w-3.5 h-3.5" /> Buat Permintaan
-            </button>
+            <Dialog>
+  <DialogTrigger asChild>
+    <button className="flex items-center gap-1.5 bg-emerald-600 text-white text-xs px-3 py-2 rounded-xl font-semibold hover:bg-emerald-700 transition-colors">
+      <Plus className="w-3.5 h-3.5" /> Buat Permintaan
+    </button>
+  </DialogTrigger>
+  <DialogContent className="sm:max-w-[425px]">
+    <DialogHeader>
+      <DialogTitle>Buat Permintaan Bantuan</DialogTitle>
+    </DialogHeader>
+    <div className="grid gap-4 py-4">
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Jenis Kemahiran/Bantuan</label>
+        <Input placeholder="Contoh: Perbaikan AC, Tuisyen" />
+      </div>
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Anggaran (RM)</label>
+        <Input type="number" placeholder="Contoh: 50" />
+      </div>
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Deskripsi Tugas</label>
+        <Textarea placeholder="Jelaskan bantuan yang anda perlukan secara ringkas..." />
+      </div>
+    </div>
+    <DialogFooter>
+      <Button className="w-full bg-emerald-600 hover:bg-emerald-700">Hantar Permintaan</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
           </div>
           {skillRequests.map((req, i) => (
             <motion.div
@@ -380,13 +417,40 @@ export function Community() {
                   <p className="text-xs text-slate-500">Bajet: <span className="font-semibold text-slate-700">{req.budget}</span></p>
                   <p className="text-xs text-emerald-600 mt-0.5">{req.responses} respons</p>
                 </div>
-                <button className="flex items-center gap-1.5 bg-purple-600 text-white text-xs px-3 py-2 rounded-xl font-semibold">
-                  Tawar Bantuan <ChevronRight className="w-3.5 h-3.5" />
-                </button>
+                <Dialog>
+  <DialogTrigger asChild>
+    <button className="flex items-center gap-1.5 bg-purple-600 text-white text-xs px-3 py-2 rounded-xl font-semibold hover:bg-purple-700 transition-colors">
+      Tawar Bantuan <ChevronRight className="w-3.5 h-3.5" />
+    </button>
+  </DialogTrigger>
+  <DialogContent className="sm:max-w-[425px]">
+    <DialogHeader>
+      <DialogTitle>Tawarkan Bantuan Anda</DialogTitle>
+    </DialogHeader>
+    <div className="py-4 space-y-4">
+      <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
+        <p className="text-xs text-slate-500 mb-1">Permintaan:</p>
+        <p className="text-sm font-semibold">{req.skill}</p>
+      </div>
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Mesej Anda</label>
+        <Textarea placeholder="Terangkan mengapa anda sesuai untuk tugasan ini..." className="min-h-[100px]" />
+      </div>
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Harga Tawaran (RM)</label>
+        <Input type="number" placeholder={req.budget.replace(/[^0-9]/g, '') || "0"} />
+      </div>
+    </div>
+    <DialogFooter>
+      <Button className="w-full bg-purple-600 hover:bg-purple-700">Hantar Tawaran</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
               </div>
             </motion.div>
           ))}
         </div>
+        
       )}
     </div>
   );
