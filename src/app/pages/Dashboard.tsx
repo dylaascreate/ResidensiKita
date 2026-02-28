@@ -19,7 +19,6 @@ import {
 import { motion } from "motion/react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
-const apartmentImg = "https://images.unsplash.com/photo-1758787401674-fd72265bfe56?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcGFydG1lbnQlMjBjb21wbGV4JTIwTWFsYXlzaWF8ZW58MXx8fHwxNzcyMjA3Mzk3fDA&ixlib=rb-4.1.0&q=80&w=1080";
 
 const savingsData = [
   { month: "Okt", savings: 8200, units: 180 },
@@ -42,6 +41,8 @@ const quickActions = [
   { icon: Camera, label: "AI Diagnose", labelMs: "Diagnosis AI", to: "/diagnose", color: "from-emerald-500 to-teal-600" },
   { icon: TrendingUp, label: "Bulk Pricing", labelMs: "Harga Pukal", to: "/pricing", color: "from-amber-500 to-orange-600" },
 ];
+
+const apartmentImg = "https://images.unsplash.com/photo-1758787401674-fd72265bfe56?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBhcGFydG1lbnQlMjBjb21wbGV4JTIwTWFsYXlzaWF8ZW58MXx8fHwxNzcyMjA3Mzk3fDA&ixlib=rb-4.1.0&q=80&w=1080";
 
 const activeServices = [
   { name: "KleenMaster Sdn Bhd", type: "Cleaning", icon: "🧹", rating: 4.8, nextVisit: "Sabtu, 8 pagi", units: 247, price: "RM 12/unit" },
@@ -97,13 +98,14 @@ export function Dashboard() {
 
       <div className="px-4 lg:px-6 -mt-6 space-y-5">
         {/* Quick Actions */}
-        <div className="grid grid-cols-4 gap-2.5">
+        <div className="relative z-10 grid grid-cols-4 gap-2.5">
           {quickActions.map((action, i) => (
             <motion.div
               key={action.to}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08 }}
+              className="relative z-20"
             >
               <Link to={action.to} className="flex flex-col items-center gap-2 bg-white rounded-2xl p-3 shadow-sm border border-slate-100 hover:shadow-md transition-all active:scale-95">
                 <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${action.color} flex items-center justify-center shadow-sm`}>
