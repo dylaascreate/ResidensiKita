@@ -1,4 +1,4 @@
-  # ResidensiKita
+# ResidensiKita
 
 ResidensiKita is an AI-powered residential governance platform designed for Malaysian communities. Developed by DEV_SQUAD as a submission for KitaHack 2026, it aims to replace reactive maintenance in high-rise living with a proactive, structured issue routing platform. The platform transforms communities into AI-assisted governance systems rather than acting merely as a marketplace or a chat group.
 
